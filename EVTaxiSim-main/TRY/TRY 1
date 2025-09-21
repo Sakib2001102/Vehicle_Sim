@@ -1,0 +1,68 @@
+import os
+import pandas as pd
+
+# Define folder structure
+folders = [
+    'data',
+    'processed_data',
+    'results',
+    'scripts',
+    'figures'
+]
+
+# Create folders
+for folder in folders:
+    os.makedirs(folder, exist_ok=True)
+
+# Sample DataFrames for CSV files
+# 1. Vehicle GPS Data
+vehicle_gps_data = pd.DataFrame({
+    'vehicle_id': [],
+    'timestamp': [],
+    'latitude': [],
+    'longitude': [],
+    'speed': [],
+    'status': []
+})
+vehicle_gps_data.to_csv('data/vehicle_gps_data.csv', index=False)
+
+# 2. Processed Vehicle Trips
+vehicle_trips = pd.DataFrame({
+    'trip_id': [],
+    'vehicle_id': [],
+    'start_time': [],
+    'end_time': [],
+    'start_location': [],
+    'end_location': [],
+    'distance_km': []
+})
+vehicle_trips.to_csv('processed_data/vehicle_trips.csv', index=False)
+
+# 3. Scheduler Output
+scheduler_output = pd.DataFrame({
+    'trip_id': [],
+    'vehicle_assigned': [],
+    'charging_start_time': [],
+    'charging_end_time': [],
+    'SOC_start': [],
+    'SOC_end': []
+})
+scheduler_output.to_csv('results/scheduler_output.csv', index=False)
+
+# 4. Grid Impact Data
+grid_impact = pd.DataFrame({
+    'time_slot': [],
+    'power_draw_kW': [],
+    'charging_station_id': []
+})
+grid_impact.to_csv('results/grid_impact.csv', index=False)
+
+# 5. Emissions Comparison
+emissions_comparison = pd.DataFrame({
+    'scenario': [],
+    'total_distance_km': [],
+    'total_emissions_kgCO2': []
+})
+emissions_comparison.to_csv('results/emissions_comparison.csv', index=False)
+
+print("Folder structure and CSV files created successfully!")
